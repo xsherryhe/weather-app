@@ -30,7 +30,7 @@ export default async function openWeatherMapAPIProvider(location) {
     tempMax: temp_max,
     tempFeels: feels_like,
     windSpeed: speed,
-    windDeg: deg,
+    windDirection: deg,
     sunrise,
     sunset,
     timeZoneOffset: timezone,

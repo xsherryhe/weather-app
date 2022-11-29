@@ -1,7 +1,7 @@
 import { apiKeys } from './settings';
 import { loginForm } from './dom-elements';
 import validate from './form-validation';
-import { weatherView } from './views';
+import { defaultWeatherView } from './views';
 
 function login(e) {
   e.preventDefault();
@@ -11,6 +11,6 @@ function login(e) {
     '#open-weather-map-api-key'
   ).value;
   apiKeys.giphy = loginForm.querySelector('#giphy-api-key').value;
-  weatherView();
+  defaultWeatherView();
 }
 loginForm.addEventListener('submit', login);

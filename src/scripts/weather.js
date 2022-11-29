@@ -3,9 +3,7 @@ import { unitSettings, tempUnits, speedUnits, timeUnits } from './settings';
 import { kelvinToCelsius, kelvinToFahrenheit } from './temp-convert';
 import { metersSecondsToMilesHours } from './speed-convert';
 import { hr24ToHr12, noPadding } from './time-convert';
-
-const weatherData = { body: {} };
-export default weatherData;
+import degreesToDirection from './wind-direction-convert';
 
 function convertTemp(tempVal) {
   const tempUnit = tempUnits[unitSettings.temp];
@@ -53,13 +51,16 @@ function formatWeatherDataBody(weatherDataBody) {
     );
   });
   weatherDataBody.windSpeed = convertSpeed(weatherDataBody.windSpeed);
-  weatherDataBody.windDeg += '°';
+  weatherDataBody.windDirection = degreesToDirection(
+    weatherDataBody.windDirection
+  );
 }
 
-export async function setWeather(
+export default async function getWeather(
   location,
   weatherProvider = openWeatherMapAPIProvider
 ) {
+  const weatherData = {};
   try {
     const weatherDataBody = await weatherProvider(location);
     formatWeatherDataBody(weatherDataBody);
@@ -67,5 +68,5 @@ export async function setWeather(
   } catch (err) {
     weatherData.error = err.message;
   }
-  console.log(weatherData);
+  return weatherData;
 }
