@@ -1,28 +1,28 @@
 application module
--application data (api keys, weather data) export
--weather processor function import and export
--temp convert function import and export
+//-weather data import and export
 
-temp converter module
--convert between f and c
+//temp converter module and other converter modules
+//-convert between k, f, and c
 
-weather processor module
--takes any weather provider as a parameter
--take json weather data and set relevant weather data in application data?
+//weather processor module
+//-takes any weather provider as a parameter
+//-take json weather data and export relevant weather data
 
-open weather api provider
--retrieve API keys from user input
--return parsed json with weather data
+//open weather api provider
+//-retrieve API keys from user input
+//-return parsed json with weather data
 
 DOM events module
--login submit => set api keys in application data?
--fahrenheit/celsius button => run imported temp convert function, update the view
+-login submit => set api keys in settings?
+-fahrenheit/celsius button => change settings, run imported temp convert function, update the view
+-metric/imperial button => change settings, run imported speed convert function, update the view
+-24hr/12hr button => change settings, run imported time convert function, update the view
 -submit form => run imported weather processor function, update the view
 
 views modules
--import application data
+-import weather data from application
 -"login" view asking for API keys
--render weather view using application data
+-render weather view using weather data
   -take any image/gif provider as a parameter and use it to create img elements
 
 giphy api provider

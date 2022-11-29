@@ -1,10 +1,3 @@
-import openWeatherMapAPIProvider from './open-weather-map-api-provider';
+import weatherData, { setWeather } from './weather';
 
-const applicationData = { apiKeys: {} };
-export default applicationData;
-
-openWeatherMapAPIProvider(
-  'London',
-  applicationData.apiKeys.openWeatherMap ||
-    prompt('Enter Open Weather Map API Key')
-);
+setWeather('London');
