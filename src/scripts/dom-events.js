@@ -1,7 +1,7 @@
 import { apiKeys } from './settings';
-import { loginForm } from './dom-elements';
+import { loginForm, weatherForm } from './dom-elements';
 import validate from './form-validation';
-import { defaultWeatherView } from './views';
+import { defaultWeatherView, weatherView } from './views';
 
 function login(e) {
   e.preventDefault();
@@ -14,3 +14,11 @@ function login(e) {
   defaultWeatherView();
 }
 loginForm.addEventListener('submit', login);
+
+function updateWeather(e) {
+  e.preventDefault();
+  if (!validate(weatherForm)) return;
+
+  weatherView(weatherForm.querySelector('#location').value);
+}
+weatherForm.addEventListener('submit', updateWeather);

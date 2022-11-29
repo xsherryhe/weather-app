@@ -21,8 +21,8 @@ DOM events module
 
 views modules
 -import weather data from application
--"login" view asking for API keys
--render weather view using weather data
+//-"login" view asking for API keys
+-//render weather view using weather data
   -take any image/gif provider as a parameter and use it to create img elements
 
 giphy api provider

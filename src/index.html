@@ -29,6 +29,13 @@
     </form>
   </div>
   <div class="weather hidden">
+    <form action="" novalidate>
+      <div class="field">
+        <label for="location">Enter a city to get the weather:</label>
+        <input type="text" name="location" id="location" required>
+        <button type="submit">Get Weather</button>
+      </div>
+    </form>
     <div class="error hidden"></div>
     Weather in <span class="city">--</span>, <span class="country">--</span>
     <div class="main">

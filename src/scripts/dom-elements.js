@@ -1,6 +1,7 @@
 export const loginElement = document.querySelector('.login');
 export const loginForm = document.querySelector('.login form');
 export const weatherElement = document.querySelector('.weather');
+export const weatherForm = document.querySelector('.weather form');
 export const weatherErrorElement = document.querySelector('.weather .error');
 export const cityElement = document.querySelector('.weather .city');
 export const countryElement = document.querySelector('.weather .country');
