@@ -13,7 +13,7 @@ application module
 //-return parsed json with weather data
 
 DOM events module
--login submit => set api keys in settings?
+//-login submit => set api keys in settings?
 -fahrenheit/celsius button => change settings, run imported temp convert function, update the view
 -metric/imperial button => change settings, run imported speed convert function, update the view
 -24hr/12hr button => change settings, run imported time convert function, update the view

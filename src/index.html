@@ -7,6 +7,29 @@
   <title>Weather App</title>
 </head>
 <body>
-  
+  <div class="login">
+    <div class="intro">
+      In order to use this web app, you must have an API Key from Open Weather Map and from GIPHY.
+      <div><a href="https://home.openweathermap.org/users/sign_up">Get an Open Weather Map API Key</a></div>
+      <div><a href="https://developers.giphy.com/docs/api/#quick-start-guide">Get a GIPHY API Key</a></div>
+    </div>
+    <form action="" novalidate>
+      Enter your keys below.
+      <div class="field">
+        <label for="open-weather-map-api-key">Open Weather Map API Key</label>
+        <input type="password" name="open-weather-map-api-key" id="open-weather-map-api-key" required>
+        <div class="error hidden"></div>
+      </div>
+      <div class="field">
+        <label for="giphy-api-key">Giphy API Key</label>
+        <input type="password" name="giphy-api-key" id="giphy-api-key" required>
+        <div class="error hidden"></div>
+      </div>
+      <button type="submit">Proceed</button>
+    </form>
+  </div>
+  <div class="weather hidden">
+    Weather
+  </div>
 </body>
 </html>

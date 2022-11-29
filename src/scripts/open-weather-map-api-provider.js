@@ -5,8 +5,7 @@ function parameterizeLocation(location) {
 }
 
 export default async function openWeatherMapAPIProvider(location) {
-  const apiKey =
-    apiKeys.openWeatherMap || prompt('Enter Open Weather Map API Key');
+  const apiKey = apiKeys.openWeatherMap;
   const locationParam = parameterizeLocation(location);
   const response = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&q=${locationParam}`

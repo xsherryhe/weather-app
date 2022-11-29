@@ -1,3 +1,4 @@
-import weatherData, { setWeather } from './weather';
+import '../styles/all.css';
+import './dom-events';
 
-setWeather('London');
+import weatherData, { setWeather } from './weather';
