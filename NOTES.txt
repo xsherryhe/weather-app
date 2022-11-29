@@ -1,0 +1,30 @@
+application module
+-application data (weather data) import and export
+-weather processor function import and export
+-temp convert function import and export
+
+temp converter module
+-convert between f and c
+
+weather processor module
+-takes any weather provider as a parameter
+-take json weather data and export relevant weather data
+
+open weather api provider
+-return parsed json with weather data
+
+
+
+
+DOM events module
+-fahrenheit/celsius button => run imported temp convert function, update the view
+-submit form => run imported weather processor function, update the view
+
+views modules
+-import application data
+-render weather view using application data
+  -take any image/gif provider as a parameter and use it to create img elements
+
+giphy api provider
+-return url of relevant gif
+
