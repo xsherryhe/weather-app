@@ -1,5 +1,5 @@
 application module
--application data (weather data) import and export
+-application data (api keys, weather data) export
 -weather processor function import and export
 -temp convert function import and export
 
@@ -8,20 +8,20 @@ temp converter module
 
 weather processor module
 -takes any weather provider as a parameter
--take json weather data and export relevant weather data
+-take json weather data and set relevant weather data in application data?
 
 open weather api provider
+-retrieve API keys from user input
 -return parsed json with weather data
 
-
-
-
 DOM events module
+-login submit => set api keys in application data?
 -fahrenheit/celsius button => run imported temp convert function, update the view
 -submit form => run imported weather processor function, update the view
 
 views modules
 -import application data
+-"login" view asking for API keys
 -render weather view using application data
   -take any image/gif provider as a parameter and use it to create img elements
 
