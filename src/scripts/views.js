@@ -1,6 +1,5 @@
 import * as dom from './dom-elements';
-import { locationSettings } from './settings';
-import { getWeather } from './application';
+import { weatherData } from './application';
 
 function clearWeatherError() {
   dom.weatherErrorElement.textContent = '';
@@ -21,9 +20,8 @@ function populateWeather(data) {
   dom.sunsetElement.textContent = data.sunset;
 }
 
-export async function weatherView(location = locationSettings.defaultCity) {
+export function weatherView() {
   clearWeatherError();
-  const weatherData = await getWeather(location);
 
   if (weatherData.error) {
     dom.weatherErrorElement.textContent = `Something went wrong: ${weatherData.error}`;
@@ -36,5 +34,4 @@ export async function weatherView(location = locationSettings.defaultCity) {
 export function defaultWeatherView() {
   dom.loginElement.classList.add('hidden');
   dom.weatherElement.classList.remove('hidden');
-  weatherView();
 }

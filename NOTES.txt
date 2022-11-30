@@ -17,7 +17,7 @@ DOM events module
 -fahrenheit/celsius button => change settings, run imported temp convert function, update the view
 -metric/imperial button => change settings, run imported speed convert function, update the view
 -24hr/12hr button => change settings, run imported time convert function, update the view
--submit form => run imported weather processor function, update the view
+//-submit form => run imported weather processor function, update the view
 
 views modules
 -import weather data from application

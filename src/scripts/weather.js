@@ -1,66 +1,56 @@
 import openWeatherMapAPIProvider from './open-weather-map-api-provider';
-import { unitSettings, tempUnits, speedUnits, timeUnits } from './settings';
-import { kelvinToCelsius, kelvinToFahrenheit } from './temp-convert';
-import { metersSecondsToMilesHours } from './speed-convert';
-import { hr24ToHr12, noPadding } from './time-convert';
-import degreesToDirection from './wind-direction-convert';
+import { tempUnits, speedUnits, timeUnits } from './settings';
+import convertTemp from './temp-convert';
+import convertSpeed from './speed-convert';
+import convertTime from './time-convert';
+import convertDirection from './wind-direction-convert';
 
-function convertTemp(tempVal) {
-  const tempUnit = tempUnits[unitSettings.temp];
-  const convertFn = {
-    K: (val) => val,
-    '°F': kelvinToFahrenheit,
-    '°C': kelvinToCelsius,
-  }[tempUnit];
-  return convertFn(Number(tempVal)) + tempUnit;
-}
+const weatherData = { body: {} };
+export default weatherData;
 
-function convertSpeed(speedVal) {
-  const speedUnit = speedUnits[unitSettings.speed];
-  const convertFn = {
-    'meter,second': (val) => val,
-    'mile,hour': metersSecondsToMilesHours,
-  }[speedUnit];
-  const convertedSpeed = convertFn(Number(speedVal));
-  const speedUnitWords = speedUnit.split(',');
-  return `${convertedSpeed} ${speedUnitWords[0]}${
-    convertedSpeed === 1 ? '' : 's'
-  } per ${speedUnitWords[1]}`;
-}
-
-function convertTime(unixTime, timeZoneOffset) {
-  const time = new Date((Number(unixTime) + Number(timeZoneOffset)) * 1000)
-    .toISOString()
-    .slice(11, 16);
-  const timeUnit = timeUnits[unitSettings.time];
-  const convertFn = {
-    hr24: noPadding,
-    hr12: hr24ToHr12,
-  }[timeUnit];
-  return convertFn(time);
-}
-
-function formatWeatherDataBody(weatherDataBody) {
+function convertWeatherDataTemps(weatherDataBody, fromTempUnit) {
   ['temp', 'tempMax', 'tempMin', 'tempFeels'].forEach((tempProp) => {
-    weatherDataBody[tempProp] = convertTemp(weatherDataBody[tempProp]);
+    weatherDataBody[tempProp] = convertTemp(
+      weatherDataBody[tempProp],
+      fromTempUnit
+    );
   });
+}
+
+function convertWeatherDataTimes(weatherDataBody, fromTimeUnit) {
   ['sunrise', 'sunset'].forEach((timeProp) => {
     weatherDataBody[timeProp] = convertTime(
       weatherDataBody[timeProp],
-      weatherDataBody.timeZoneOffset
+      weatherDataBody.timeZoneOffset,
+      fromTimeUnit
     );
   });
-  weatherDataBody.windSpeed = convertSpeed(weatherDataBody.windSpeed);
-  weatherDataBody.windDirection = degreesToDirection(
+}
+
+function convertWeatherDataSpeeds(weatherDataBody, fromSpeedUnit) {
+  weatherDataBody.windSpeed = convertSpeed(
+    weatherDataBody.windSpeed,
+    fromSpeedUnit
+  );
+}
+
+function convertWeatherDataDirections(weatherDataBody) {
+  weatherDataBody.windDirection = convertDirection(
     weatherDataBody.windDirection
   );
 }
 
-export default async function getWeather(
+function formatWeatherDataBody(weatherDataBody) {
+  convertWeatherDataTemps(weatherDataBody, 'K');
+  convertWeatherDataTimes(weatherDataBody, 'unix');
+  convertWeatherDataSpeeds(weatherDataBody, 'meter,second');
+  convertWeatherDataDirections(weatherDataBody);
+}
+
+export async function getWeather(
   location,
   weatherProvider = openWeatherMapAPIProvider
 ) {
-  const weatherData = {};
   try {
     const weatherDataBody = await weatherProvider(location);
     formatWeatherDataBody(weatherDataBody);
@@ -69,4 +59,11 @@ export default async function getWeather(
     weatherData.error = err.message;
   }
   return weatherData;
+}
+
+export function convertWeather(oldUnitSettings) {
+  const weatherDataBody = weatherData.body;
+  convertWeatherDataTemps(weatherDataBody, tempUnits[oldUnitSettings.temp]);
+  convertWeatherDataTimes(weatherDataBody, timeUnits[oldUnitSettings.time]);
+  convertWeatherDataSpeeds(weatherDataBody, speedUnits[oldUnitSettings.speed]);
 }

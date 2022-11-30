@@ -29,7 +29,7 @@
     </form>
   </div>
   <div class="weather hidden">
-    <form action="" novalidate>
+    <form class="search" action="" novalidate>
       <div class="field">
         <label for="location">Enter a city to get the weather:</label>
         <input type="text" name="location" id="location" required>
@@ -37,20 +37,50 @@
       </div>
     </form>
     <div class="error hidden"></div>
-    Weather in <span class="city">--</span>, <span class="country">--</span>
-    <div class="main">
-      <span class="main-temperature">--</span>
-      <span class="main-weather">--</span>
-    </div>
-    <div>Feels like: <span class="feels-temperature">--</span></div>
-    <div>Low: <span class="min-temperature">--</span></div>
-    <div>High: <span class="max-temperature">--</span></div>
-    <div class="wind">
-      Wind: <span class="wind-speed">--</span>, heading <span class="wind-direction">--</span>
-    </div>
-    <div class="sun">
-      Sunrise at: <span class="sunrise">--</span>
-      Sunset at: <span class="sunset">--</span>
+
+    <button class="settings">Settings</button>
+    <form action="" class="settings hidden">
+      <div class="field">
+        <label for="temp">Temperature Units:</label>
+        <select name="temp" id="temp">
+          <option value="0">Kelvin (K)</option>
+          <option value="1" selected>Fahrenheit (°F)</option>
+          <option value="2">Celsius (°C)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="speed">Wind Speed Units:</label>
+        <select name="speed" id="speed">
+          <option value="0">Meters per Second</option>
+          <option value="1" selected>Miles per Hour</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="time">Time System:</label>
+        <select name="time" id="time">
+          <option value="0">24 hours</option>
+          <option value="1" selected>12 hours (AM/PM)</option>
+        </select>
+      </div>
+      <button type="submit">Update Settings</button>
+    </form>
+
+    <div class="weather-body">
+      Weather in <span class="city">--</span>, <span class="country">--</span>
+      <div class="main">
+        <span class="main-temperature">--</span>
+        <span class="main-weather">--</span>
+      </div>
+      <div>Feels like: <span class="feels-temperature">--</span></div>
+      <div>Low: <span class="min-temperature">--</span></div>
+      <div>High: <span class="max-temperature">--</span></div>
+      <div class="wind">
+        Wind: <span class="wind-speed">--</span>, heading <span class="wind-direction">--</span>
+      </div>
+      <div class="sun">
+        Sunrise at: <span class="sunrise">--</span>
+        Sunset at: <span class="sunset">--</span>
+      </div>
     </div>
   </div>
 </body>
