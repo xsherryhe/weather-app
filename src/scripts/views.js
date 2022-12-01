@@ -1,5 +1,6 @@
 import * as dom from './dom-elements';
 import { weatherData } from './application';
+import weatherGif, { getWeatherGif } from './weather-gif';
 
 function clearWeatherError() {
   dom.weatherErrorElement.textContent = '';
@@ -20,6 +21,11 @@ function populateWeather(data) {
   dom.sunsetElement.textContent = data.sunset;
 }
 
+async function populateWeatherImage(data) {
+  await getWeatherGif(data.weather);
+  dom.mainWeatherImg.src = weatherGif.url;
+}
+
 export function weatherView() {
   clearWeatherError();
 
@@ -29,6 +35,7 @@ export function weatherView() {
     return;
   }
   populateWeather(weatherData.body);
+  populateWeatherImage(weatherData.body);
 }
 
 export function defaultWeatherView() {

@@ -10,6 +10,7 @@ export const countryElement = document.querySelector('.weather .country');
 export const mainTempElement = document.querySelector(
   '.weather .main-temperature'
 );
+export const mainWeatherImg = document.querySelector('.weather .main-img');
 export const mainWeatherElement = document.querySelector(
   '.weather .main-weather'
 );

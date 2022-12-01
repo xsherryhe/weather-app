@@ -1,5 +1,6 @@
 import openWeatherMapAPIProvider from './open-weather-map-api-provider';
 import { tempUnits, speedUnits, timeUnits } from './settings';
+import { capitalize } from './utilities';
 import convertTemp from './temp-convert';
 import convertSpeed from './speed-convert';
 import convertTime from './time-convert';
@@ -7,6 +8,10 @@ import convertDirection from './wind-direction-convert';
 
 const weatherData = { body: {} };
 export default weatherData;
+
+function formatWeatherDataMain(weatherDataBody) {
+  weatherDataBody.weather = capitalize(weatherDataBody.weather);
+}
 
 function convertWeatherDataTemps(weatherDataBody, fromTempUnit) {
   ['temp', 'tempMax', 'tempMin', 'tempFeels'].forEach((tempProp) => {
@@ -41,6 +46,7 @@ function convertWeatherDataDirections(weatherDataBody) {
 }
 
 function formatWeatherDataBody(weatherDataBody) {
+  formatWeatherDataMain(weatherDataBody);
   convertWeatherDataTemps(weatherDataBody, 'K');
   convertWeatherDataTimes(weatherDataBody, 'unix');
   convertWeatherDataSpeeds(weatherDataBody, 'meter,second');

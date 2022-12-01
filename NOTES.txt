@@ -14,17 +14,17 @@ application module
 
 DOM events module
 //-login submit => set api keys in settings?
--fahrenheit/celsius button => change settings, run imported temp convert function, update the view
--metric/imperial button => change settings, run imported speed convert function, update the view
--24hr/12hr button => change settings, run imported time convert function, update the view
+//-fahrenheit/celsius button => change settings, run imported temp convert function, update the view
+//-metric/imperial button => change settings, run imported speed convert function, update the view
+//-24hr/12hr button => change settings, run imported time convert function, update the view
 //-submit form => run imported weather processor function, update the view
 
 views modules
 -import weather data from application
 //-"login" view asking for API keys
 -//render weather view using weather data
-  -take any image/gif provider as a parameter and use it to create img elements
+  //-take any image/gif provider as a parameter and use it to create img elements
 
-giphy api provider
--return url of relevant gif
+//giphy api provider
+//-return url of relevant gif
 
