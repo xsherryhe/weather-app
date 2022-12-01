@@ -1,8 +1,8 @@
 form {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  justify-items: center;
   align-items: center;
-  gap: 1rem;
+  row-gap: 1rem;
 }
 
 .field {
@@ -11,9 +11,13 @@ form {
   gap: 0.1rem;
 }
 
-input {
+input, select {
   min-width: 18rem;
   min-height: 1rem;
   padding: 0.25rem;
   font-size: 1rem;
+}
+
+select {
+  cursor: pointer;
 }

@@ -12,7 +12,7 @@ import {
   settingsForm,
 } from './dom-elements';
 import validate from './form-validation';
-import { defaultWeatherView, weatherView } from './views';
+import { defaultWeatherView, weatherView, settingsView } from './views';
 
 async function login(e) {
   e.preventDefault();
@@ -39,11 +39,11 @@ async function updateWeather(e) {
 }
 weatherForm.addEventListener('submit', updateWeather);
 
-function toggleSettingsForm(e) {
+function showSettings(e) {
   e.preventDefault();
-  settingsForm.classList.toggle('hidden');
+  settingsView();
 }
-settingsButton.addEventListener('click', toggleSettingsForm);
+settingsButton.addEventListener('click', showSettings);
 
 function updateSettings(e) {
   e.preventDefault();

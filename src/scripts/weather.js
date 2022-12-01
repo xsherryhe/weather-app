@@ -10,7 +10,10 @@ const weatherData = { body: {}, error: '' };
 export default weatherData;
 
 function standardizeWeatherDataMain(weatherDataBody) {
-  weatherDataBody.weather = capitalize(weatherDataBody.weather);
+  const mainVal = weatherDataBody.weather;
+  if (!mainVal) return;
+
+  weatherDataBody.weather = capitalize(mainVal);
 }
 
 function standardizeWeatherDataKeyword(weatherDataBody) {
@@ -24,11 +27,16 @@ function standardizeWeatherDataKeyword(weatherDataBody) {
     Thunderstorm: ['Thunder', 'Thunderstorm', 'Lightning'],
   });
 
-  weatherDataBody.weatherKeyword = capitalize(weatherDataBody.weatherKeyword);
+  let keywordVal = weatherDataBody.weatherKeyword;
+  if (!keywordVal) return;
+
+  keywordVal = capitalize(keywordVal);
+  weatherDataBody.weatherKeyword = keywordVal;
+
   for (let i = 0; i < weatherKeywords.length; i += 1) {
     const [weatherKeyword, possibleWords] = weatherKeywords[i];
     const match = possibleWords.some((possibleWord) =>
-      weatherDataBody.weatherKeyword.includes(possibleWord)
+      keywordVal.includes(possibleWord)
     );
     if (match) {
       weatherDataBody.weatherKeyword = weatherKeyword;
@@ -44,34 +52,33 @@ function standardizeWeatherData(weatherDataBody) {
 
 function convertWeatherDataTemps(weatherDataBody, fromTempUnit) {
   ['temp', 'tempMax', 'tempMin', 'tempFeels'].forEach((tempProp) => {
-    weatherDataBody[tempProp] = convertTemp(
-      weatherDataBody[tempProp],
-      fromTempUnit
-    );
+    const tempVal = weatherDataBody[tempProp];
+    if (tempVal) weatherDataBody[tempProp] = convertTemp(tempVal, fromTempUnit);
   });
 }
 
 function convertWeatherDataTimes(weatherDataBody, fromTimeUnit) {
   ['sunrise', 'sunset'].forEach((timeProp) => {
-    weatherDataBody[timeProp] = convertTime(
-      weatherDataBody[timeProp],
-      weatherDataBody.timeZoneOffset,
-      fromTimeUnit
-    );
+    const timeVal = weatherDataBody[timeProp];
+    if (timeVal)
+      weatherDataBody[timeProp] = convertTime(
+        timeVal,
+        weatherDataBody.timeZoneOffset || 0,
+        fromTimeUnit
+      );
   });
 }
 
 function convertWeatherDataSpeeds(weatherDataBody, fromSpeedUnit) {
-  weatherDataBody.windSpeed = convertSpeed(
-    weatherDataBody.windSpeed,
-    fromSpeedUnit
-  );
+  const speedVal = weatherDataBody.windSpeed;
+  if (speedVal)
+    weatherDataBody.windSpeed = convertSpeed(speedVal, fromSpeedUnit);
 }
 
 function convertWeatherDataDirections(weatherDataBody) {
-  weatherDataBody.windDirection = convertDirection(
-    weatherDataBody.windDirection
-  );
+  const directionVal = weatherDataBody.windDirection;
+  if (directionVal)
+    weatherDataBody.windDirection = convertDirection(directionVal);
 }
 
 function formatWeatherDataBody(weatherDataBody) {

@@ -27,8 +27,15 @@ async function populateWeatherImage(data) {
   dom.mainWeatherImg.src = weatherGif.url;
 }
 
-export function weatherView() {
+export function defaultWeatherView() {
+  dom.loginElement.classList.add('hidden');
+  dom.settingsElement.classList.add('hidden');
+  dom.weatherElement.classList.remove('hidden');
   clearWeatherError();
+}
+
+export function weatherView() {
+  defaultWeatherView();
 
   if (weatherData.error) {
     dom.weatherErrorElement.textContent = weatherData.error;
@@ -39,7 +46,6 @@ export function weatherView() {
   populateWeatherImage(weatherData.body);
 }
 
-export function defaultWeatherView() {
-  dom.loginElement.classList.add('hidden');
-  dom.weatherElement.classList.remove('hidden');
+export function settingsView() {
+  dom.settingsElement.classList.remove('hidden');
 }

@@ -1,0 +1,28 @@
+.settings {
+  position: absolute;
+  z-index: 1;
+  min-height: 100vh;
+  width: 100%;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
+.settings form {
+  background-color: white;
+  margin: 4rem 0;
+  min-width: 45vw;
+  padding: 0.5rem 0.5rem 1.5rem;
+  border-radius: 0.2rem;
+  border: 2px solid var(--secondary-color);
+}
+
+.settings .hide {
+  justify-self: end;
+  padding: 0.25rem;
+  height: 2rem;
+  width: 2rem;
+  font-weight: 900;
+}

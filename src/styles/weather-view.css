@@ -1,22 +1,39 @@
 .weather {
-  align-self: stretch;
   min-height: 100vh;
+  width: max-content;
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .weather form.search {
-  flex-direction: row;
-  align-items: flex-end;
+  grid-template: 1.2rem 2rem max-content / repeat(3, max-content);
+  column-gap: 0.5rem;
+  row-gap: 0;
   justify-content: center;
-  gap: 0.5rem;
 }
 
-.weather form.search input, .weather form.search button {
+.weather form.search .field {
+  grid-row: 1 / span 3;
+}
+
+.weather form.search input {
   height: 2rem;
 }
 
 .weather form.search button {
   padding: 0.25rem 0.5rem;
+}
+
+.weather form.search button[type="submit"] {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+.weather form.search button.show-settings {
+  grid-row: 2;
+  grid-column: 3;
 }
 
 .weather[data-weather='Sunny'] {
