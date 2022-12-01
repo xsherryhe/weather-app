@@ -1,3 +1,67 @@
+:root {
+  --site-font: 'Helvetica', sans-serif;
+  --background-color: rgb(255, 255, 165);
+  --secondary-color: rgb(0, 70, 162);
+  --light-secondary-color: rgb(200, 224, 255);
+  --sunny-color: rgb(255, 255, 165);
+  --sunny-font-color: black;
+  --cloud-color: rgb(165, 204, 255);
+  --cloud-font-color: black;
+  --lowVis-color: rgb(70, 70, 70);
+  --lowVis-font-color: white;
+  --rain-color: rgb(0, 70, 162);
+  --rain-font-color: rgb(200, 224, 255);
+  --snow-color: white;
+  --snow-font-color: black;
+  --thunder-color: black;
+  --thunder-font-color: yellow;
+}
+
+html {
+  font-size: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--site-font);
+  min-height: 100vh;
+  background-color: var(--sunny-color);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-size: 1rem;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  background-color: var(--secondary-color);
+  color: white;
+  border-radius: 0.2rem;
+}
+
+button:hover {
+  background-color: var(--light-secondary-color);
+  color: black;
+}
+
 .hidden {
-  display: none;
+  display: none !important;
+}
+
+.error {
+  color: red;
 }

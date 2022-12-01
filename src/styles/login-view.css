@@ -1,0 +1,17 @@
+.login {
+  align-self: center;
+  margin: 4rem 1rem 0;
+  height: max-content;
+  padding: 2rem 1.5rem;
+  border-radius: 0.2rem;
+  border: 2px solid var(--secondary-color);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.login .link {
+  margin-top: 0.5rem;
+  text-align: center;
+}

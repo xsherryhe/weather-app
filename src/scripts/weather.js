@@ -6,11 +6,40 @@ import convertSpeed from './speed-convert';
 import convertTime from './time-convert';
 import convertDirection from './wind-direction-convert';
 
-const weatherData = { body: {} };
+const weatherData = { body: {}, error: '' };
 export default weatherData;
 
-function formatWeatherDataMain(weatherDataBody) {
+function standardizeWeatherDataMain(weatherDataBody) {
   weatherDataBody.weather = capitalize(weatherDataBody.weather);
+}
+
+function standardizeWeatherDataKeyword(weatherDataBody) {
+  const weatherKeywords = Object.entries({
+    Sunny: ['Clear', 'Clear Sky', 'Sunny', 'Sun'],
+    Rain: ['Rain', 'Drizzle', 'Shower'],
+    Clouds: ['Cloud'],
+    Foggy: ['Haze', 'Mist', 'Smoke', 'Fog'],
+    Dusty: ['Dust', 'Ash', 'Sand'],
+    Snow: ['Snow', 'Sleet', 'Hail'],
+    Thunderstorm: ['Thunder', 'Thunderstorm', 'Lightning'],
+  });
+
+  weatherDataBody.weatherKeyword = capitalize(weatherDataBody.weatherKeyword);
+  for (let i = 0; i < weatherKeywords.length; i += 1) {
+    const [weatherKeyword, possibleWords] = weatherKeywords[i];
+    const match = possibleWords.some((possibleWord) =>
+      weatherDataBody.weatherKeyword.includes(possibleWord)
+    );
+    if (match) {
+      weatherDataBody.weatherKeyword = weatherKeyword;
+      return;
+    }
+  }
+}
+
+function standardizeWeatherData(weatherDataBody) {
+  standardizeWeatherDataMain(weatherDataBody);
+  standardizeWeatherDataKeyword(weatherDataBody);
 }
 
 function convertWeatherDataTemps(weatherDataBody, fromTempUnit) {
@@ -46,7 +75,7 @@ function convertWeatherDataDirections(weatherDataBody) {
 }
 
 function formatWeatherDataBody(weatherDataBody) {
-  formatWeatherDataMain(weatherDataBody);
+  standardizeWeatherData(weatherDataBody);
   convertWeatherDataTemps(weatherDataBody, 'K');
   convertWeatherDataTimes(weatherDataBody, 'unix');
   convertWeatherDataSpeeds(weatherDataBody, 'meter,second');
@@ -57,6 +86,7 @@ export async function getWeather(
   location,
   weatherProvider = openWeatherMapAPIProvider
 ) {
+  weatherData.error = '';
   try {
     const weatherDataBody = await weatherProvider(location);
     formatWeatherDataBody(weatherDataBody);

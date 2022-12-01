@@ -11,13 +11,14 @@ export default async function openWeatherMapAPIProvider(location) {
     `https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&q=${locationParam}`
   );
   if (response.status === 401) throw new Error('Invalid API Key');
+  if (response.status === 404) throw new Error('City not found');
 
   const {
     name,
     main: { feels_like, temp, temp_max, temp_min },
     sys: { country, sunrise, sunset },
     timezone,
-    weather: [{ description }],
+    weather: [{ main, description }],
     wind: { deg, speed },
   } = await response.json();
 
@@ -25,6 +26,7 @@ export default async function openWeatherMapAPIProvider(location) {
     name,
     country,
     weather: description,
+    weatherKeyword: main === 'Atmosphere' ? description : main,
     temp,
     tempMin: temp_min,
     tempMax: temp_max,

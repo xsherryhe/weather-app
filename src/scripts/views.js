@@ -8,6 +8,7 @@ function clearWeatherError() {
 }
 
 function populateWeather(data) {
+  dom.weatherElement.dataset.weather = data.weatherKeyword;
   dom.cityElement.textContent = data.name;
   dom.countryElement.textContent = data.country;
   dom.mainTempElement.textContent = data.temp;
@@ -22,7 +23,7 @@ function populateWeather(data) {
 }
 
 async function populateWeatherImage(data) {
-  await getWeatherGif(data.weather);
+  await getWeatherGif(data.weatherKeyword);
   dom.mainWeatherImg.src = weatherGif.url;
 }
 
@@ -30,7 +31,7 @@ export function weatherView() {
   clearWeatherError();
 
   if (weatherData.error) {
-    dom.weatherErrorElement.textContent = `Something went wrong: ${weatherData.error}`;
+    dom.weatherErrorElement.textContent = weatherData.error;
     dom.weatherErrorElement.classList.remove('hidden');
     return;
   }

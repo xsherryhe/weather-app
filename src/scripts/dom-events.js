@@ -39,7 +39,8 @@ async function updateWeather(e) {
 }
 weatherForm.addEventListener('submit', updateWeather);
 
-function toggleSettingsForm() {
+function toggleSettingsForm(e) {
+  e.preventDefault();
   settingsForm.classList.toggle('hidden');
 }
 settingsButton.addEventListener('click', toggleSettingsForm);

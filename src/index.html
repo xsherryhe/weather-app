@@ -10,8 +10,10 @@
   <div class="login">
     <div class="intro">
       In order to use this web app, you must have an API Key from Open Weather Map and from GIPHY.
-      <div><a href="https://home.openweathermap.org/users/sign_up">Get an Open Weather Map API Key</a></div>
-      <div><a href="https://developers.giphy.com/docs/api/#quick-start-guide">Get a GIPHY API Key</a></div>
+      <div class="links">
+        <div class="link"><a href="https://home.openweathermap.org/users/sign_up">Get an Open Weather Map API Key</a></div>
+        <div class="link"><a href="https://developers.giphy.com/docs/api/#quick-start-guide">Get a GIPHY API Key</a></div>
+      </div>
     </div>
     <form action="" novalidate>
       Enter your keys below.
@@ -33,12 +35,12 @@
       <div class="field">
         <label for="location">Enter a city to get the weather:</label>
         <input type="text" name="location" id="location" required>
-        <button type="submit">Get Weather</button>
+        <div class="error hidden"></div>
       </div>
+      <button type="submit">Get Weather</button>
+      <button class="settings">Settings</button>
     </form>
-    <div class="error hidden"></div>
 
-    <button class="settings">Settings</button>
     <form action="" class="settings hidden">
       <div class="field">
         <label for="temp">Temperature Units:</label>

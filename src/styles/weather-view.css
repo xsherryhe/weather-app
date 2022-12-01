@@ -1,0 +1,51 @@
+.weather {
+  align-self: stretch;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.weather form.search {
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.weather form.search input, .weather form.search button {
+  height: 2rem;
+}
+
+.weather form.search button {
+  padding: 0.25rem 0.5rem;
+}
+
+.weather[data-weather='Sunny'] {
+  background-color: var(--sunny-color);
+  color: var(--sunny-font-color);
+}
+
+.weather[data-weather='Clouds'] {
+  background-color: var(--cloud-color);
+  color: var(--cloud-font-color);
+}
+
+.weather[data-weather='Foggy'],
+.weather[data-weather='Dusty'] {
+  background-color: var(--lowVis-color);
+  color: var(--lowVis-font-color);
+}
+
+.weather[data-weather='Rain'] {
+  background-color: var(--rain-color);
+  color: var(--rain-font-color);
+}
+
+.weather[data-weather='Snow'] {
+  background-color: var(--snow-color);
+  color: var(--snow-font-color);
+}
+
+.weather[data-weather='Thunderstorm'] {
+  background-color: var(--thunder-color);
+  color: var(--thunder-font-color);
+}
