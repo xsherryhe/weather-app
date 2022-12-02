@@ -40,7 +40,7 @@ async function login(e) {
   });
 
   defaultWeatherView();
-
+  weatherLoadingView();
   await getWeather(locationSettings.defaultCity);
   weatherView();
 }
