@@ -13,11 +13,19 @@ import {
   hideSettingsButton,
 } from './dom-elements';
 import validate from './form-validation';
-import { defaultWeatherView, weatherView, settingsView } from './views';
+import {
+  loginView,
+  loginLoadingView,
+  defaultWeatherView,
+  weatherView,
+  settingsView,
+  weatherLoadingView,
+} from './views';
 
 async function login(e) {
   e.preventDefault();
-  if (!(await validate(loginForm))) return;
+  loginLoadingView();
+  if (!(await validate(loginForm))) return loginView();
 
   updateApiKeys({
     openWeatherMap: loginForm.querySelector('#open-weather-map-api-key').value,
@@ -33,6 +41,7 @@ loginForm.addEventListener('submit', login);
 
 async function updateWeather(e) {
   e.preventDefault();
+  weatherLoadingView();
   if (!(await validate(weatherForm))) return;
 
   await getWeather(weatherForm.querySelector('#location').value);

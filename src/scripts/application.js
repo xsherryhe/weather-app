@@ -1,3 +1,4 @@
+import '../images/loading.gif';
 import '../styles/all.css';
 import '../styles/form.css';
 import '../styles/login-view.css';

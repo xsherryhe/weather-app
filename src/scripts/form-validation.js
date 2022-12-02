@@ -1,6 +1,14 @@
 import openWeatherMapAPIProvider from './open-weather-map-api-provider';
 import giphyAPIProvider from './giphy-api-provider';
 
+function clearFormErrors(inputs, errorElements) {
+  inputs.forEach((input) => input.setCustomValidity(''));
+  errorElements.forEach((errorElement) => {
+    errorElement.textContent = '';
+    errorElement.classList.add('hidden');
+  });
+}
+
 async function validateApiKey(input) {
   if (!input.checkValidity()) return;
 
@@ -20,10 +28,7 @@ async function validateApiKey(input) {
 export default async function validate(form) {
   const errorElements = form.querySelectorAll('.error');
   const inputs = [...form.querySelectorAll('input')];
-  errorElements.forEach((errorElement) => {
-    errorElement.textContent = '';
-    errorElement.classList.add('hidden');
-  });
+  clearFormErrors(inputs, errorElements);
 
   await Promise.all(
     inputs.map((input) =>

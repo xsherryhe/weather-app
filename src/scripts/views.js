@@ -23,8 +23,14 @@ function populateWeather(data) {
 }
 
 async function populateWeatherImage(data) {
+  dom.mainWeatherLoadingImg.classList.remove('hidden');
+  dom.mainWeatherImg.classList.add('hidden');
+
   await getWeatherGif(data.weatherKeyword);
   dom.mainWeatherImg.src = weatherGif.url;
+
+  dom.mainWeatherLoadingImg.classList.add('hidden');
+  dom.mainWeatherImg.classList.remove('hidden');
 }
 
 export function defaultWeatherView() {
@@ -32,6 +38,9 @@ export function defaultWeatherView() {
   dom.settingsElement.classList.add('hidden');
   dom.weatherElement.classList.remove('hidden');
   clearWeatherError();
+
+  dom.weatherLoadingElement.classList.add('hidden');
+  dom.weatherBodyElement.classList.remove('hidden');
 }
 
 export function weatherView({ withImage = true } = {}) {
@@ -44,6 +53,22 @@ export function weatherView({ withImage = true } = {}) {
   }
   populateWeather(weatherData.body);
   if (withImage) populateWeatherImage(weatherData.body);
+}
+
+export function weatherLoadingView() {
+  dom.weatherLoadingElement.classList.remove('hidden');
+  dom.weatherBodyElement.classList.add('hidden');
+}
+
+export function loginView() {
+  dom.loginElement.classList.remove('hidden');
+  dom.loginButton.classList.remove('hidden');
+  dom.loginLoadingElement.classList.add('hidden');
+}
+
+export function loginLoadingView() {
+  dom.loginLoadingElement.classList.remove('hidden');
+  dom.loginButton.classList.add('hidden');
 }
 
 export function settingsView() {

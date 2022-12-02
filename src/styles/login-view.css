@@ -14,3 +14,14 @@
   margin-top: 0.5rem;
   text-align: center;
 }
+
+.login .loading {
+  color: var(--secondary-color);
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.login .loading-img {
+  width: 1.5rem;
+}

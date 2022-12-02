@@ -28,6 +28,10 @@
         <div class="error hidden"></div>
       </div>
       <button type="submit">Proceed</button>
+      <div class="loading hidden">
+        <img class="loading-img" src="./images/loading.gif" alt="">
+        Checking credentials...
+      </div>
     </form>
   </div>
 
@@ -71,6 +75,10 @@
         <button type="submit">Get Weather</button>
         <button class="show-settings">Settings</button>
       </form>
+      <div class="loading hidden">
+        <img class="loading-img" src="./images/loading.gif" alt="loading">
+        Loading weather...
+      </div>
       <div class="weather-body">
         <div class="heading">
           Weather in <span class="city">--</span>, <span class="country">--</span>
@@ -80,7 +88,10 @@
             <div class="main-temperature">--</div>
             <div class="main-weather">--</div>
           </div>
-          <div class="main-img-container"><img src="#" alt="" class="main-img"></div>
+          <div class="main-img-container">
+            <img src="#" alt="" class="main-img hidden">
+            <img class="loading-img" src="./images/loading.gif" alt="loading">
+          </div>
         </div>
         <div class="details">
           <div class="temperatures">
