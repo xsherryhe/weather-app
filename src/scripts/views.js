@@ -37,14 +37,22 @@ async function populateWeatherImage(data) {
   dom.mainWeatherImg.classList.remove('hidden');
 }
 
+export function weatherLoadingView() {
+  dom.weatherLoadingElement.classList.remove('hidden');
+  dom.weatherBodyElement.classList.add('hidden');
+}
+
+export function hideWeatherLoadingView() {
+  dom.weatherLoadingElement.classList.add('hidden');
+  dom.weatherBodyElement.classList.remove('hidden');
+}
+
 export function defaultWeatherView() {
   dom.loginElement.classList.add('hidden');
   dom.settingsElement.classList.add('hidden');
   dom.weatherElement.classList.remove('hidden');
   clearWeatherError();
-
-  dom.weatherLoadingElement.classList.add('hidden');
-  dom.weatherBodyElement.classList.remove('hidden');
+  hideWeatherLoadingView();
 }
 
 export function weatherView({ withImage = true } = {}) {
@@ -57,11 +65,6 @@ export function weatherView({ withImage = true } = {}) {
   }
   populateWeather(weatherData.body);
   if (withImage) populateWeatherImage(weatherData.body);
-}
-
-export function weatherLoadingView() {
-  dom.weatherLoadingElement.classList.remove('hidden');
-  dom.weatherBodyElement.classList.add('hidden');
 }
 
 export function weatherButtonsIconView() {

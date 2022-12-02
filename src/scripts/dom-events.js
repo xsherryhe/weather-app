@@ -24,6 +24,7 @@ import {
   weatherButtonsIconView,
   weatherButtonsTextView,
   weatherButtonIconView,
+  hideWeatherLoadingView,
 } from './views';
 
 async function login(e) {
@@ -46,7 +47,7 @@ loginForm.addEventListener('submit', login);
 async function updateWeather(e) {
   e.preventDefault();
   weatherLoadingView();
-  if (!(await validate(weatherForm))) return;
+  if (!(await validate(weatherForm))) return hideWeatherLoadingView();
 
   await getWeather(weatherForm.querySelector('#location').value);
   weatherView();
