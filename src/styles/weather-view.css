@@ -1,7 +1,13 @@
 .weather {
+  align-self: stretch;
   min-height: 100vh;
-  width: max-content;
   padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.weather-container {
+  width: max-content;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -11,7 +17,6 @@
   grid-template: 1.2rem 2rem max-content / repeat(3, max-content);
   column-gap: 0.5rem;
   row-gap: 0;
-  justify-content: center;
 }
 
 .weather form.search .field {
@@ -34,6 +39,38 @@
 .weather form.search button.show-settings {
   grid-row: 2;
   grid-column: 3;
+}
+
+.weather .weather-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.weather .weather-body .main {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.weather .weather-body .main-img {
+  object-fit: cover;
+  width: 30vw;
+}
+
+.weather .weather-body .main-info {
+  font-size: 3rem;
+}
+
+.weather .weather-body .details {
+  display: grid;
+  grid-template: repeat(2, max-content) / repeat(2, max-content);
+  justify-content: space-evenly;
+  column-gap: 1rem;
+}
+
+.weather .weather-body .temperatures {
+  grid-row: 1 / span 2;
 }
 
 .weather[data-weather='Sunny'] {
