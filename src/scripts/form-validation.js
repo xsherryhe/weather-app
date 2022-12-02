@@ -1,10 +1,35 @@
-export default function validate(form) {
+import openWeatherMapAPIProvider from './open-weather-map-api-provider';
+import giphyAPIProvider from './giphy-api-provider';
+
+async function validateApiKey(input) {
+  if (!input.checkValidity()) return;
+
+  const [apiProvider, dummyParams] = {
+    'open-weather-map': [openWeatherMapAPIProvider, ['New York']],
+    giphy: [giphyAPIProvider, ['cats']],
+  }[input.id.replace('-api-key', '')];
+  if (!apiProvider) return;
+
+  try {
+    await apiProvider(...dummyParams, input.value);
+  } catch (err) {
+    input.setCustomValidity(err.message);
+  }
+}
+
+export default async function validate(form) {
   const errorElements = form.querySelectorAll('.error');
-  const inputs = form.querySelectorAll('input');
+  const inputs = [...form.querySelectorAll('input')];
   errorElements.forEach((errorElement) => {
     errorElement.textContent = '';
     errorElement.classList.add('hidden');
   });
+
+  await Promise.all(
+    inputs.map((input) =>
+      input.id.includes('api-key') ? validateApiKey(input) : Promise.resolve()
+    )
+  );
 
   inputs.forEach((input) => {
     if (!input.checkValidity()) {

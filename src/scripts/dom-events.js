@@ -17,7 +17,7 @@ import { defaultWeatherView, weatherView, settingsView } from './views';
 
 async function login(e) {
   e.preventDefault();
-  if (!validate(loginForm)) return;
+  if (!(await validate(loginForm))) return;
 
   updateApiKeys({
     openWeatherMap: loginForm.querySelector('#open-weather-map-api-key').value,
@@ -33,7 +33,7 @@ loginForm.addEventListener('submit', login);
 
 async function updateWeather(e) {
   e.preventDefault();
-  if (!validate(weatherForm)) return;
+  if (!(await validate(weatherForm))) return;
 
   await getWeather(weatherForm.querySelector('#location').value);
   weatherView();
@@ -46,14 +46,14 @@ function showSettings(e) {
 }
 settingsButton.addEventListener('click', showSettings);
 
-function updateSettings(e) {
+async function updateSettings(e) {
   e.preventDefault();
-  if (!validate(settingsForm)) return;
+  if (!(await validate(settingsForm))) return;
 
   const oldUnitSettings = { ...unitSettings };
   updateUnitSettings(Object.fromEntries(new FormData(settingsForm).entries()));
   convertWeather(oldUnitSettings);
-  weatherView();
+  weatherView({ withImage: false });
 }
 settingsForm.addEventListener('submit', updateSettings);
 
