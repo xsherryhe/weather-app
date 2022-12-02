@@ -65,47 +65,45 @@
   </div>
 
   <div class="weather hidden">
-    <div class="weather-container">
-      <form class="search" action="" novalidate>
-        <div class="field">
-          <label for="location">Enter a city to get the weather:</label>
-          <input type="text" name="location" id="location" required>
-          <div class="error hidden"></div>
-        </div>
-        <button type="submit">Get Weather</button>
-        <button class="show-settings">Settings</button>
-      </form>
-      <div class="loading hidden">
-        <img class="loading-img" src="./images/loading.gif" alt="loading">
-        Loading weather...
+    <form class="search" action="" novalidate>
+      <div class="field">
+        <label for="location">Enter a city to get the weather:</label>
+        <input type="text" name="location" id="location" required>
+        <div class="error hidden"></div>
       </div>
-      <div class="weather-body">
-        <div class="heading">
-          Weather in <span class="city">--</span>, <span class="country">--</span>
+      <button type="submit">Get Weather</button>
+      <button class="show-settings">Settings</button>
+    </form>
+    <div class="loading hidden">
+      <img class="loading-img" src="./images/loading.gif" alt="loading">
+      Loading weather...
+    </div>
+    <div class="weather-body">
+      <div class="heading">
+        Weather in <span class="city">--</span>, <span class="country">--</span>
+      </div>
+      <div class="main">
+        <div class="main-info">
+          <div class="main-temperature">--</div>
+          <div class="main-weather">--</div>
         </div>
-        <div class="main">
-          <div class="main-info">
-            <div class="main-temperature">--</div>
-            <div class="main-weather">--</div>
-          </div>
-          <div class="main-img-container">
-            <img src="#" alt="" class="main-img hidden">
-            <img class="loading-img" src="./images/loading.gif" alt="loading">
-          </div>
+        <div class="main-img-container">
+          <img src="#" alt="" class="main-img hidden">
+          <img class="loading-img" src="./images/loading.gif" alt="loading">
         </div>
-        <div class="details">
-          <div class="temperatures">
-            <div>Feels like: <span class="feels-temperature">--</span></div>
-            <div>Low: <span class="min-temperature">--</span></div>
-            <div>High: <span class="max-temperature">--</span></div>
-          </div>
-          <div class="wind">
-            Wind: <span class="wind-speed">--</span>, heading <span class="wind-direction">--</span>
-          </div>
-          <div class="sun">
-            <div>Sunrise at: <span class="sunrise">--</span></div>
-            <div>Sunset at: <span class="sunset">--</span></div>
-          </div>
+      </div>
+      <div class="details">
+        <div class="temperatures">
+          <div>Feels like: <span class="feels-temperature">--</span></div>
+          <div>Low: <span class="min-temperature">--</span></div>
+          <div>High: <span class="max-temperature">--</span></div>
+        </div>
+        <div class="wind">
+          Wind: <span class="wind-speed">--</span>, heading <span class="wind-direction">--</span>
+        </div>
+        <div class="sun">
+          <div>Sunrise at: <span class="sunrise">--</span></div>
+          <div>Sunset at: <span class="sunset">--</span></div>
         </div>
       </div>
     </div>
