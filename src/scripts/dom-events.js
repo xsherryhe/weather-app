@@ -9,6 +9,7 @@ import {
   loginForm,
   weatherForm,
   weatherFormButton,
+  mainWeatherImg,
   settingsButton,
   settingsForm,
   hideSettingsButton,
@@ -25,6 +26,7 @@ import {
   weatherButtonsTextView,
   weatherButtonIconView,
   hideWeatherLoadingView,
+  weatherImageView,
 } from './views';
 
 async function login(e) {
@@ -97,3 +99,5 @@ function buttonIconHover(e) {
   button.addEventListener('mouseover', buttonIconHover);
   button.addEventListener('mouseout', buttonIconNormal);
 });
+
+mainWeatherImg.addEventListener('load', weatherImageView);

@@ -32,7 +32,9 @@ async function populateWeatherImage(data) {
 
   await getWeatherGif(data.weatherKeyword);
   dom.mainWeatherImg.src = weatherGif.url;
+}
 
+export function weatherImageView() {
   dom.mainWeatherLoadingImg.classList.add('hidden');
   dom.mainWeatherImg.classList.remove('hidden');
 }
