@@ -1,17 +1,29 @@
 .weather {
-  align-self: stretch;
   min-height: 100vh;
-  padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
 }
 
-.weather form.search {
+.weather > * {
+  padding: 1rem;
+  border-radius: 0.2rem;
+  border: 6px double var(--secondary-color);
+}
+
+.weather > form.search {
+  padding: 1.5rem 1rem;
+  width: 100vw;
+  border-radius: 0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
   grid-template: 1.2rem 2rem max-content / repeat(3, max-content);
   column-gap: 0.5rem;
   row-gap: 0;
+  justify-content: center;
+  align-items: stretch;
 }
 
 .weather form.search .field {
@@ -36,9 +48,11 @@
   grid-column: 3;
 }
 
-.weather .loading {
-  margin-top: 5rem;
+.weather > .loading.loading {
+  border: none;
+  background-color: transparent;
   color: var(--secondary-color);
+  margin-top: 5rem;
   font-size: 3rem;
   display: flex;
   gap: 0.5rem;
@@ -51,20 +65,23 @@
 }
 
 .weather .weather-body {
+  max-width: 95vw;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  box-shadow: 0 0 10px var(--box-shadow-color);
 }
 
 .weather .weather-body .main {
   display: flex;
   align-items: center;
   gap: 2rem;
-  justify-content: space-between;
+  justify-content: center;
+  font-weight: 800;
 }
 
 .weather .weather-body .main-img-container {
-  width: 30vw;
+  max-width: 45vw;
   height: 30vh;
   display: flex;
   justify-content: center;
@@ -72,8 +89,9 @@
 }
 
 .weather .weather-body .main-img {
+  border-radius: 0.2rem;
   object-fit: cover;
-  width: 30vw;
+  max-width: 45vw;
   height: 30vh;
 }
 
@@ -93,35 +111,72 @@
   grid-row: 1 / span 2;
 }
 
-.weather[data-weather='Sunny'] {
+.weather[data-weather='Sunny'] > * {
   background-color: var(--sunny-color);
   color: var(--sunny-font-color);
+  border-color: var(--sunny-font-color);
 }
 
-.weather[data-weather='Clouds'] {
+.weather[data-weather='Sunny'] button:not(:hover) {
+  background-color: var(--sunny-font-color);
+  color: var(--sunny-color);
+}
+
+.weather[data-weather='Clouds']>* {
   background-color: var(--cloud-color);
   color: var(--cloud-font-color);
+  border-color: var(--cloud-font-color);
 }
 
-.weather[data-weather='Foggy'],
-.weather[data-weather='Dusty'] {
+.weather[data-weather='Clouds'] button:not(:hover) {
+  background-color: var(--cloud-font-color);
+  color: var(--cloud-color);
+}
+
+.weather[data-weather='Foggy'] > *,
+.weather[data-weather='Dusty'] > * {
   background-color: var(--lowVis-color);
   color: var(--lowVis-font-color);
+  border-color: var(--lowVis-font-color);
 }
 
-.weather[data-weather='Rain'] {
+.weather[data-weather='Foggy'] button:not(:hover),
+.weather[data-weather='Dusty'] button:not(:hover) {
+  background-color: var(--lowVis-font-color);
+  color: var(--lowVis-color);
+}
+
+.weather[data-weather='Rain'] > * {
   background-color: var(--rain-color);
   color: var(--rain-font-color);
+  border-color: var(--rain-font-color);
 }
 
-.weather[data-weather='Snow'] {
+.weather[data-weather='Rain'] button:not(:hover) {
+  background-color: var(--rain-font-color);
+  color: var(--rain-color);
+}
+
+.weather[data-weather='Snow'] > * {
   background-color: var(--snow-color);
   color: var(--snow-font-color);
+  border-color: var(--snow-font-color);
 }
 
-.weather[data-weather='Thunderstorm'] {
+.weather[data-weather='Snow'] button:not(:hover) {
+  background-color: var(--snow-font-color);
+  color: var(--snow-color);
+}
+
+.weather[data-weather='Thunderstorm'] > * {
   background-color: var(--thunder-color);
   color: var(--thunder-font-color);
+  border-color: var(--thunder-font-color);
+}
+
+.weather[data-weather='Thunderstorm'] button:not(:hover) {
+  background-color: var(--thunder-font-color);
+  color: var(--thunder-color);
 }
 
 @media (max-width: 575px) {
@@ -163,6 +218,7 @@
     font-size: 1.5rem;
   }
 
+  /*
   .weather .weather-body .main-img-container {
     width: 40vw;
   }
@@ -170,33 +226,9 @@
   .weather .weather-body .main-img {
     width: 40vw;
   }
+  */
 
   .weather .weather-body .details {
     grid-template: repeat(3, max-content) / max-content;
   }
 }
-
-/*
-.weather form.search {
-  grid-template: 1.2rem 2rem max-content 2rem/ repeat(2, 1fr);
-  align-items: stretch;
-}
-
-.weather form.search .field {
-  grid-column: 1 / span 2;
-}
-
-.weather form.search button[type="submit"],
-.weather form.search button.show-settings {
-  grid-row: 4;
-  width: 100%;
-}
-
-.weather form.search button[type="submit"] {
-  grid-column: 1;
-}
-
-.weather form.search button.show-settings {
-  grid-column: 2;
-}
-*/

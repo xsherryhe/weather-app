@@ -3,7 +3,7 @@
   height: max-content;
   padding: 2rem 1.5rem;
   border-radius: 0.2rem;
-  border: 2px solid var(--secondary-color);
+  border: 6px double var(--secondary-color);
   background-color: white;
   display: flex;
   flex-direction: column;

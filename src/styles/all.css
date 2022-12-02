@@ -3,18 +3,19 @@
   --background-color: rgb(255, 255, 165);
   --secondary-color: rgb(0, 70, 162);
   --light-secondary-color: rgb(200, 224, 255);
-  --sunny-color: rgb(255, 255, 165);
-  --sunny-font-color: black;
+  --box-shadow-color: rgb(80, 80, 80);
+  --sunny-color: var(--background-color);
+  --sunny-font-color: var(--secondary-color);
   --cloud-color: rgb(165, 204, 255);
   --cloud-font-color: black;
   --lowVis-color: rgb(70, 70, 70);
   --lowVis-font-color: white;
-  --rain-color: rgb(0, 70, 162);
-  --rain-font-color: rgb(200, 224, 255);
+  --rain-color: var(--secondary-color);
+  --rain-font-color: rgb(165, 204, 255);
   --snow-color: white;
   --snow-font-color: black;
   --thunder-color: black;
-  --thunder-font-color: yellow;
+  --thunder-font-color: var(--background-color);
 }
 
 html {
@@ -28,7 +29,7 @@ html {
 body {
   font-family: var(--site-font);
   min-height: 100vh;
-  background-color: var(--sunny-color);
+  background-color: var(--light-secondary-color);
   margin: 0;
   padding: 0;
   display: flex;
