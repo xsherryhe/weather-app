@@ -10,6 +10,7 @@ import {
   weatherForm,
   settingsButton,
   settingsForm,
+  hideSettingsButton,
 } from './dom-elements';
 import validate from './form-validation';
 import { defaultWeatherView, weatherView, settingsView } from './views';
@@ -55,3 +56,9 @@ function updateSettings(e) {
   weatherView();
 }
 settingsForm.addEventListener('submit', updateSettings);
+
+function hideSettings(e) {
+  e.preventDefault();
+  defaultWeatherView();
+}
+hideSettingsButton.addEventListener('click', hideSettings);

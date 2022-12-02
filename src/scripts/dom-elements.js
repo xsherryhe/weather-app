@@ -6,6 +6,7 @@ export const weatherErrorElement = document.querySelector('.weather .error');
 export const settingsButton = document.querySelector('button.show-settings');
 export const settingsElement = document.querySelector('.settings');
 export const settingsForm = document.querySelector('.settings form');
+export const hideSettingsButton = document.querySelector('.settings .hide');
 export const cityElement = document.querySelector('.weather .city');
 export const countryElement = document.querySelector('.weather .country');
 export const mainTempElement = document.querySelector(

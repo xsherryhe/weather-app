@@ -34,7 +34,7 @@ export function defaultWeatherView() {
   clearWeatherError();
 }
 
-export function weatherView() {
+export function weatherView({ withImage = true } = {}) {
   defaultWeatherView();
 
   if (weatherData.error) {
@@ -43,7 +43,7 @@ export function weatherView() {
     return;
   }
   populateWeather(weatherData.body);
-  populateWeatherImage(weatherData.body);
+  if (withImage) populateWeatherImage(weatherData.body);
 }
 
 export function settingsView() {
