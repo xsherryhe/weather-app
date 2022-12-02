@@ -7,6 +7,9 @@ export const loginLoadingElement = document.querySelector('.login .loading');
 export const weatherElement = document.querySelector('.weather');
 export const weatherForm = document.querySelector('.weather form.search');
 export const weatherErrorElement = document.querySelector('.weather .error');
+export const weatherFormButton = document.querySelector(
+  '.weather form.search button[type="submit"]'
+);
 export const weatherLoadingElement =
   document.querySelector('.weather .loading');
 export const weatherBodyElement = document.querySelector(

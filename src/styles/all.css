@@ -66,3 +66,13 @@ button:hover {
 .error {
   color: red;
 }
+
+.icon {
+  width: 1.25rem;
+}
+
+@media (max-width: 575px) {
+  html {
+    font-size: 16px;
+  }
+}

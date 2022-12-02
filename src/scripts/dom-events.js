@@ -8,6 +8,7 @@ import {
 import {
   loginForm,
   weatherForm,
+  weatherFormButton,
   settingsButton,
   settingsForm,
   hideSettingsButton,
@@ -20,6 +21,9 @@ import {
   weatherView,
   settingsView,
   weatherLoadingView,
+  weatherButtonsIconView,
+  weatherButtonsTextView,
+  weatherButtonIconView,
 } from './views';
 
 async function login(e) {
@@ -71,3 +75,24 @@ function hideSettings(e) {
   defaultWeatherView();
 }
 hideSettingsButton.addEventListener('click', hideSettings);
+
+function switchButtons() {
+  (window.innerWidth <= 515
+    ? weatherButtonsIconView
+    : weatherButtonsTextView)();
+}
+window.addEventListener('load', switchButtons);
+window.addEventListener('resize', switchButtons);
+
+function buttonIconNormal(e) {
+  weatherButtonIconView(e.target.closest('button'), 'normal');
+}
+
+function buttonIconHover(e) {
+  weatherButtonIconView(e.target.closest('button'), 'hover');
+}
+
+[weatherFormButton, settingsButton].forEach((button) => {
+  button.addEventListener('mouseover', buttonIconHover);
+  button.addEventListener('mouseout', buttonIconNormal);
+});

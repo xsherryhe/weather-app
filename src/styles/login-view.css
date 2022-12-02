@@ -1,5 +1,5 @@
 .login {
-  margin: 4rem 1rem 0;
+  margin: 4rem 1rem;
   height: max-content;
   padding: 2rem 1.5rem;
   border-radius: 0.2rem;
@@ -24,4 +24,17 @@
 
 .login .loading-img {
   width: 1.5rem;
+}
+
+@media (max-height: 575px) {
+  .login {
+    margin: 1rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .login {
+    margin: 0.25rem;
+    padding: 0.5rem;
+  }
 }

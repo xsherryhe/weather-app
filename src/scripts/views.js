@@ -1,6 +1,10 @@
 import * as dom from './dom-elements';
 import { weatherData } from './application';
 import weatherGif, { getWeatherGif } from './weather-gif';
+import getWeatherIcon from '../images/get-weather.svg';
+import settingsIcon from '../images/settings.svg';
+import getWeatherHoverIcon from '../images/get-weather-hover.svg';
+import settingsHoverIcon from '../images/settings-hover.svg';
 
 function clearWeatherError() {
   dom.weatherErrorElement.textContent = '';
@@ -58,6 +62,31 @@ export function weatherView({ withImage = true } = {}) {
 export function weatherLoadingView() {
   dom.weatherLoadingElement.classList.remove('hidden');
   dom.weatherBodyElement.classList.add('hidden');
+}
+
+export function weatherButtonsIconView() {
+  [dom.weatherFormButton, dom.settingsButton].forEach((button) => {
+    button.querySelector('.text').classList.add('hidden');
+    button.querySelector('.icon').classList.remove('hidden');
+  });
+}
+
+const icons = [
+  { name: 'get-weather', normal: getWeatherIcon, hover: getWeatherHoverIcon },
+  { name: 'show-settings', normal: settingsIcon, hover: settingsHoverIcon },
+];
+
+export function weatherButtonIconView(button, iconType) {
+  button.querySelector('.icon').src = icons.find(({ name }) =>
+    button.classList.contains(name)
+  )[iconType];
+}
+
+export function weatherButtonsTextView() {
+  [dom.weatherFormButton, dom.settingsButton].forEach((button) => {
+    button.querySelector('.text').classList.remove('hidden');
+    button.querySelector('.icon').classList.add('hidden');
+  });
 }
 
 export function loginView() {

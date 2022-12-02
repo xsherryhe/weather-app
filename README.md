@@ -9,3 +9,6 @@ Image credits:
 1) Icons8: https://icons8.com/
   a. Drops fading
 
+2) Material Design Icons: https://materialdesignicons.com/
+  a. magnify
+  b. cog
