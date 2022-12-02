@@ -79,6 +79,7 @@
 
 .weather .weather-body .main-info {
   font-size: 3rem;
+  text-align: center;
 }
 
 .weather .weather-body .details {
@@ -128,6 +129,10 @@
     padding: 0.5rem;
     gap: 0.5rem;
     align-items: stretch;
+  }
+
+  .weather .weather-body {
+    gap: 0.5rem;
   }
 
   .weather .weather-body .main {

@@ -26,3 +26,24 @@
   width: 2rem;
   font-weight: 900;
 }
+
+@media (max-width: 515px) {
+  .settings form {
+    margin: 0;
+  }
+}
+
+@media (max-width: 375px) {
+  .settings {
+    padding: 1rem;
+    justify-content: stretch;
+  }
+
+  .settings form {
+    width: 100%;
+  }
+
+  .settings select {
+    min-width: 16rem;
+  }
+}
