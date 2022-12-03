@@ -4,6 +4,7 @@
   flex-direction: column;
   align-items: center;
   gap: 2rem;
+  padding-bottom: 1rem;
 }
 
 .weather > * {
@@ -182,9 +183,7 @@
 
 @media (max-width: 575px) {
   .weather {
-    padding: 0.5rem;
-    gap: 0.5rem;
-    align-items: stretch;
+    gap: 1rem;
   }
 
   .weather .weather-body {
@@ -218,16 +217,6 @@
   .weather .weather-body .main-info {
     font-size: 1.5rem;
   }
-
-  /*
-  .weather .weather-body .main-img-container {
-    width: 40vw;
-  }
-
-  .weather .weather-body .main-img {
-    width: 40vw;
-  }
-  */
 
   .weather .weather-body .details {
     grid-template: repeat(3, max-content) / max-content;
