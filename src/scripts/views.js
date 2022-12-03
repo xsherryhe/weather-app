@@ -63,17 +63,18 @@ function populateWeatherColors() {
   );
 }
 
+export function weatherImageView() {
+  dom.mainWeatherLoadingImg.classList.add('hidden');
+  dom.mainWeatherImg.classList.remove('hidden');
+}
+
 async function populateWeatherImage(data) {
   dom.mainWeatherLoadingImg.classList.remove('hidden');
   dom.mainWeatherImg.classList.add('hidden');
 
   await getWeatherGif(data.weatherKeyword);
   dom.mainWeatherImg.src = weatherGif.url;
-}
-
-export function weatherImageView() {
-  dom.mainWeatherLoadingImg.classList.add('hidden');
-  dom.mainWeatherImg.classList.remove('hidden');
+  if (weatherGif.url === '#') weatherImageView();
 }
 
 export function weatherLoadingView() {

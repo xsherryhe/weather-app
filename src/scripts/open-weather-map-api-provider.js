@@ -1,4 +1,5 @@
 import { apiKeys } from './settings';
+import { duration } from './utilities';
 
 function parameterizeLocation(location) {
   return location.replace(' ', '+');
@@ -9,8 +10,11 @@ export default async function openWeatherMapAPIProvider(
   apiKey = apiKeys.openWeatherMap
 ) {
   const locationParam = parameterizeLocation(location);
-  const response = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&q=${locationParam}`
+  const response = await duration(
+    8000,
+    fetch(
+      `https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&q=${locationParam}`
+    )
   );
   if (response.status === 401) throw new Error('Invalid API Key');
   if (response.status === 404) throw new Error('City not found');
