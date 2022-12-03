@@ -14,6 +14,7 @@ import {
   settingsForm,
   hideSettingsButton,
 } from './dom-elements';
+import sanitizeForm from './form-sanitization';
 import validate from './form-validation';
 import {
   colorizeIcon,
@@ -32,6 +33,8 @@ import {
 async function login(e) {
   e.preventDefault();
   loginLoadingView();
+
+  sanitizeForm(loginForm);
   if (!(await validate(loginForm))) return loginView();
 
   updateApiKeys({
@@ -49,6 +52,8 @@ loginForm.addEventListener('submit', login);
 async function updateWeather(e) {
   e.preventDefault();
   weatherLoadingView();
+
+  sanitizeForm(weatherForm);
   if (!(await validate(weatherForm))) return hideWeatherLoadingView();
 
   await getWeather(weatherForm.querySelector('#location').value);
@@ -64,6 +69,8 @@ settingsButton.addEventListener('click', showSettings);
 
 async function updateSettings(e) {
   e.preventDefault();
+
+  sanitizeForm(settingsForm);
   if (!(await validate(settingsForm))) return;
 
   const oldUnitSettings = { ...unitSettings };
