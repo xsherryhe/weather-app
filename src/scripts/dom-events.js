@@ -16,6 +16,7 @@ import {
 } from './dom-elements';
 import validate from './form-validation';
 import {
+  colorizeIcon,
   loginView,
   loginLoadingView,
   defaultWeatherView,
@@ -24,7 +25,6 @@ import {
   weatherLoadingView,
   weatherButtonsIconView,
   weatherButtonsTextView,
-  weatherButtonIconView,
   hideWeatherLoadingView,
   weatherImageView,
 } from './views';
@@ -88,11 +88,11 @@ window.addEventListener('load', switchButtons);
 window.addEventListener('resize', switchButtons);
 
 function buttonIconNormal(e) {
-  weatherButtonIconView(e.target.closest('button'), 'normal');
+  colorizeIcon(e.target.closest('button'));
 }
 
 function buttonIconHover(e) {
-  weatherButtonIconView(e.target.closest('button'), 'hover');
+  colorizeIcon(e.target.closest('button'), 'hover');
 }
 
 [weatherFormButton, settingsButton].forEach((button) => {

@@ -1,6 +1,8 @@
 import '../images/loading.gif';
-import '../images/get-weather.svg';
-import '../images/settings.svg';
+import '../images/get-weather-white.svg';
+import '../images/settings-white.svg';
+import '../images/get-weather-black.svg';
+import '../images/settings-black.svg';
 import '../styles/all.css';
 import '../styles/form.css';
 import '../styles/login-view.css';

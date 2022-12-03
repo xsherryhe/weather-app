@@ -1,14 +1,45 @@
 import * as dom from './dom-elements';
 import { weatherData } from './application';
 import weatherGif, { getWeatherGif } from './weather-gif';
-import getWeatherIcon from '../images/get-weather.svg';
-import settingsIcon from '../images/settings.svg';
-import getWeatherHoverIcon from '../images/get-weather-hover.svg';
-import settingsHoverIcon from '../images/settings-hover.svg';
+import getWeatherWhiteIcon from '../images/get-weather-white.svg';
+import settingsWhiteIcon from '../images/settings-white.svg';
+import getWeatherBlackIcon from '../images/get-weather-black.svg';
+import settingsBlackIcon from '../images/settings-black.svg';
 
 function clearWeatherError() {
   dom.weatherErrorElement.textContent = '';
   dom.weatherErrorElement.classList.add('hidden');
+}
+
+function getWeatherColorScheme(element) {
+  const weatherType = element.closest('.weather').dataset.weather;
+  return ['Foggy', 'Dusty', 'Thunderstorm'].includes(weatherType)
+    ? 'alternate'
+    : 'regular';
+}
+
+const icons = [
+  {
+    name: 'get-weather',
+    regular: getWeatherWhiteIcon,
+    alternate: getWeatherBlackIcon,
+    hover: getWeatherBlackIcon,
+  },
+  {
+    name: 'show-settings',
+    regular: settingsWhiteIcon,
+    alternate: settingsBlackIcon,
+    hover: settingsBlackIcon,
+  },
+];
+
+export function colorizeIcon(
+  element,
+  iconType = getWeatherColorScheme(element)
+) {
+  element.querySelector('.icon').src = icons.find(({ name }) =>
+    element.classList.contains(name)
+  )[iconType];
 }
 
 function populateWeather(data) {
@@ -24,6 +55,12 @@ function populateWeather(data) {
   dom.windDirectionElement.textContent = data.windDirection;
   dom.sunriseElement.textContent = data.sunrise;
   dom.sunsetElement.textContent = data.sunset;
+}
+
+function populateWeatherColors() {
+  [dom.weatherFormButton, dom.settingsButton].forEach((button) =>
+    colorizeIcon(button)
+  );
 }
 
 async function populateWeatherImage(data) {
@@ -66,6 +103,7 @@ export function weatherView({ withImage = true } = {}) {
     return;
   }
   populateWeather(weatherData.body);
+  populateWeatherColors();
   if (withImage) populateWeatherImage(weatherData.body);
 }
 
@@ -74,17 +112,6 @@ export function weatherButtonsIconView() {
     button.querySelector('.text').classList.add('hidden');
     button.querySelector('.icon').classList.remove('hidden');
   });
-}
-
-const icons = [
-  { name: 'get-weather', normal: getWeatherIcon, hover: getWeatherHoverIcon },
-  { name: 'show-settings', normal: settingsIcon, hover: settingsHoverIcon },
-];
-
-export function weatherButtonIconView(button, iconType) {
-  button.querySelector('.icon').src = icons.find(({ name }) =>
-    button.classList.contains(name)
-  )[iconType];
 }
 
 export function weatherButtonsTextView() {
