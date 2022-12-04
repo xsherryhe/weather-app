@@ -1,5 +1,6 @@
 import { getWeather, convertWeather } from './weather';
 import {
+  apiKeys,
   updateApiKeys,
   unitSettings,
   updateUnitSettings,
@@ -28,7 +29,21 @@ import {
   weatherButtonsTextView,
   hideWeatherLoadingView,
   weatherImageView,
+  updateSettingsFormView,
 } from './views';
+
+async function initializeWeather() {
+  defaultWeatherView();
+  weatherLoadingView();
+  await getWeather(locationSettings.defaultCity);
+  weatherView();
+}
+
+function initialize() {
+  updateSettingsFormView();
+  (apiKeys.openWeatherMap && apiKeys.giphy ? initializeWeather : loginView)();
+}
+window.addEventListener('load', initialize);
 
 async function login(e) {
   e.preventDefault();
@@ -42,10 +57,7 @@ async function login(e) {
     giphy: loginForm.querySelector('#giphy-api-key').value,
   });
 
-  defaultWeatherView();
-  weatherLoadingView();
-  await getWeather(locationSettings.defaultCity);
-  weatherView();
+  initializeWeather();
 }
 loginForm.addEventListener('submit', login);
 
@@ -75,6 +87,8 @@ async function updateSettings(e) {
 
   const oldUnitSettings = { ...unitSettings };
   updateUnitSettings(Object.fromEntries(new FormData(settingsForm).entries()));
+  updateSettingsFormView();
+
   convertWeather(oldUnitSettings);
   weatherView({ withImage: false });
 }

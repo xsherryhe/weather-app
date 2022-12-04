@@ -5,6 +5,7 @@ import getWeatherWhiteIcon from '../images/get-weather-white.svg';
 import settingsWhiteIcon from '../images/settings-white.svg';
 import getWeatherBlackIcon from '../images/get-weather-black.svg';
 import settingsBlackIcon from '../images/settings-black.svg';
+import { unitSettings } from './settings';
 
 function clearWeatherError() {
   dom.weatherErrorElement.textContent = '';
@@ -123,7 +124,10 @@ export function weatherButtonsTextView() {
 }
 
 export function loginView() {
+  dom.settingsElement.classList.add('hidden');
+  dom.weatherElement.classList.add('hidden');
   dom.loginElement.classList.remove('hidden');
+
   dom.loginButton.classList.remove('hidden');
   dom.loginLoadingElement.classList.add('hidden');
 }
@@ -135,4 +139,10 @@ export function loginLoadingView() {
 
 export function settingsView() {
   dom.settingsElement.classList.remove('hidden');
+}
+
+export function updateSettingsFormView() {
+  Object.keys(unitSettings).forEach((key) => {
+    dom.settingsForm.querySelector(`#${key}`).value = unitSettings[key];
+  });
 }
