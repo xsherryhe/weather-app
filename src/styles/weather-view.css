@@ -14,18 +14,32 @@
 }
 
 .weather > form.search {
-  padding: 1.5rem 1rem;
+  padding: 0 1rem 1.5rem;
   width: 100vw;
   border-radius: 0;
   border-top: none;
   border-left: none;
   border-right: none;
-  box-shadow: 0 0 10px var(--box-shadow-color);
+  box-shadow: 0 0 10px -10px var(--box-shadow-color);
   grid-template: 1.2rem 2rem max-content / repeat(3, max-content);
   column-gap: 0.5rem;
   row-gap: 0;
   justify-content: center;
   align-items: stretch;
+}
+
+.weather .reset-login-container {
+  border: none;
+  width: 100vw;
+  margin-bottom: -2rem;
+  padding: 0.5rem 0.5rem 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.weather .reset-login {
+  font-size: 0.7rem;
+  padding: 0.2rem;
 }
 
 .weather form.search .field {
@@ -184,6 +198,11 @@
 @media (max-width: 575px) {
   .weather {
     gap: 1rem;
+  }
+
+  .weather .reset-login-container {
+    margin-bottom: -1rem;
+    padding: 0.25rem;
   }
 
   .weather .weather-body {

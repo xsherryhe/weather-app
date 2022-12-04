@@ -4,6 +4,7 @@ export const loginButton = document.querySelector(
   '.login form button[type="submit"]'
 );
 export const loginLoadingElement = document.querySelector('.login .loading');
+export const resetLoginButton = document.querySelector('button.reset-login');
 export const weatherElement = document.querySelector('.weather');
 export const weatherForm = document.querySelector('.weather form.search');
 export const weatherErrorElement = document.querySelector('.weather .error');

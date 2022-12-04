@@ -14,6 +14,7 @@ import {
   settingsButton,
   settingsForm,
   hideSettingsButton,
+  resetLoginButton,
 } from './dom-elements';
 import sanitizeForm from './form-sanitization';
 import validate from './form-validation';
@@ -60,6 +61,17 @@ async function login(e) {
   initializeWeather();
 }
 loginForm.addEventListener('submit', login);
+
+function resetLogin(e) {
+  e.preventDefault();
+
+  updateApiKeys({
+    openWeatherMap: '',
+    giphy: '',
+  });
+  loginView();
+}
+resetLoginButton.addEventListener('click', resetLogin);
 
 async function updateWeather(e) {
   e.preventDefault();
